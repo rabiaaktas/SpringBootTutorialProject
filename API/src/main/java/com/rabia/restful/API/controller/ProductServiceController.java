@@ -3,6 +3,9 @@ package com.rabia.restful.API.controller;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.rabia.restful.API.exception.ProductNotfoundException;
 import com.rabia.restful.API.model.Product;
+import com.rabia.restful.API.service.ProductService;
+import com.rabia.restful.API.service.ProductServiceImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,9 @@ import java.util.Map;
 
 @RestController
 public class ProductServiceController {
+
+    @Autowired
+    ProductService productService;
     private static Map<String, Product> productRepo = new HashMap<String, Product>();
     static {
         Product honey = new Product();
@@ -50,5 +56,20 @@ public class ProductServiceController {
     public ResponseEntity<Object> getProducts(){
         return new ResponseEntity<>(productRepo.values(), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/products")
+    @CrossOrigin(origins = "http://localhost:8080")
+    public ResponseEntity<Object> getProduct() {
+        return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
+    }
+    @RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Object>
+    updatePro(@PathVariable("id") String id, @RequestBody Product product) {
+
+        productService.updateProduct(id, product);
+        return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
+    }
+
+
 
 }
