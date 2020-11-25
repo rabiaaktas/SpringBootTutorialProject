@@ -16,8 +16,8 @@ import java.util.Map;
 @RestController
 public class ProductServiceController {
 
-    @Autowired
-    ProductService productService;
+    /*@Autowired
+    ProductService productService;*/
     private static Map<String, Product> productRepo = new HashMap<String, Product>();
     static {
         Product honey = new Product();
@@ -57,7 +57,7 @@ public class ProductServiceController {
         return new ResponseEntity<>(productRepo.values(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/products")
+   /* @RequestMapping(value = "/products")
     @CrossOrigin(origins = "http://localhost:8080")
     public ResponseEntity<Object> getProduct() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
@@ -70,6 +70,6 @@ public class ProductServiceController {
         return new ResponseEntity<>("Product is updated successsfully", HttpStatus.OK);
     }
 
-
+*/
 
 }

@@ -1,11 +1,13 @@
 package com.rabia.restful.API.service;
 
 import com.rabia.restful.API.model.Product;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ProductServiceImp implements ProductService{
 
     private static Map<String, Product> productRepo = new HashMap<>();
